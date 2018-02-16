@@ -1,0 +1,25 @@
+﻿@model Lab01_1104017_1169317.Classes.Data
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3> ¿Estas seguro que quieres eliminar este Jugador?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            <br />
+            <br />
+            @Html.ActionLink("Regresar al menu principal", "Index")
+        </div>
+    }
+</div>

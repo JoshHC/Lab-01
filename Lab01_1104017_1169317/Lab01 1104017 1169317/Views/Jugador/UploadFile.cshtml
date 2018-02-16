@@ -1,0 +1,16 @@
+﻿@model Lab01_1104017_1169317.Jugador
+
+@using (Html.BeginForm("UploadFile", "Jugador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary();
+
+    <h4>Subir Archivo</h4>
+    <div class="form-group">
+        <input type="file"  name ="file" value="Examinar"  class="btn-default" style="color:transparent"/>
+    </div>
+    <div class="form-group"> 
+        <button type="submit" class="btn btn-default">Subir archivo</button>
+    </div>
+
+}
