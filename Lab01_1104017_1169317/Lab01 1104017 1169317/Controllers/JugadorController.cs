@@ -61,8 +61,6 @@ namespace Lab01_1104017_1169317.Controllers
         // GET: Jugador/Edit/5
         public ActionResult Edit(int? id)
         {
-
-
             return View();
         }
 

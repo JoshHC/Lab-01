@@ -1,10 +1,14 @@
 ﻿@model Lab01_1104017_1169317.Jugador
+@{
+    ViewBag.Title = "Ingresar Jugador";
+}
 
+<h2>Crear Jugador</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Jugador</h4>
         <hr />
@@ -57,9 +61,10 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<br />
+<div> @Html.ActionLink("Ver Jugadores", "Index") </div>
+<div> @Html.ActionLink("Regresar al menu principal", "Index", "Home")</div>
+<br />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
