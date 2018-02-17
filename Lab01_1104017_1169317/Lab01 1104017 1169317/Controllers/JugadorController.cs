@@ -13,6 +13,7 @@ namespace Lab01_1104017_1169317.Controllers
         // GET: Jugador
         public ActionResult Index()
         {
+            //Data.Instance.JugadoresCSharp
             return View(Data.Instance.JugadoresCSharp);
         }
 
