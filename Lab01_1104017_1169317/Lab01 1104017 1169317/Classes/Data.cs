@@ -18,12 +18,14 @@ namespace Lab01_1104017_1169317.Classes
             }
         }
 
-        //public List<Jugador> ;
+
         public LinkedList<Jugador> JugadoresCSharp;
+        public ListaDoble<Jugador> JugadoresArtesanal;
 
         public Data()
         {
             JugadoresCSharp = new LinkedList<Jugador>();
+            JugadoresArtesanal = new ListaDoble<Jugador>();
         }
     }
 }

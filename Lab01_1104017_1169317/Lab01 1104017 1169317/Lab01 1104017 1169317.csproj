@@ -143,7 +143,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\Data.cs" />
+    <Compile Include="Classes\ListaDoble.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JugadorArtesanalController.cs" />
     <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,6 +195,8 @@
     <Content Include="Views\Jugador\Index.cshtml" />
     <Content Include="Views\Jugador\Delete.cshtml" />
     <Content Include="Views\Jugador\UploadFile.cshtml" />
+    <Content Include="Views\JugadorArtesanal\Create.cshtml" />
+    <Content Include="Views\JugadorArtesanal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
