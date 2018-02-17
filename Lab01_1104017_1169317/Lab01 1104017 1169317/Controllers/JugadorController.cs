@@ -85,7 +85,7 @@ namespace Lab01_1104017_1169317.Controllers
                     Club = collection["Club"]
                 };
 
-                foreach (Jugador persona in Data.Instance.JugadoresCSharp)
+                foreach (Jugador persona in Data.Instance.JugadoresArtesanal)
                 {
                     if (persona.ID == id)
                     {
@@ -94,10 +94,12 @@ namespace Lab01_1104017_1169317.Controllers
 
                         while (listo != true)
                         {
+                            //if (Data.Instance.JugadoresArtesanal.) Aqui estaba modificando
                             if (Data.Instance.JugadoresCSharp.ElementAt(cont).ID != persona.ID)
                                 cont++;
                             else
                             {
+
                                 Data.Instance.JugadoresCSharp.AddBefore(Data.Instance.JugadoresCSharp.Find(persona), jugadorNuevo);
                                 Data.Instance.JugadoresCSharp.Remove(persona);
                                 listo = true;
