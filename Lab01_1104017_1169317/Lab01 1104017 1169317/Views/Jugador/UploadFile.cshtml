@@ -5,12 +5,55 @@
     @Html.AntiForgeryToken();
     @Html.ValidationSummary();
 
-    <h4>Subir Archivo</h4>
-    <div class="form-group">
-        <input type="file"  name ="file" value="Examinar"  class="btn-default" style="color:transparent"/>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h2 align="center">Agregar con Archivo</h2>
+            <p align="center">
+                Para agragar un gurpo de personas a través de un archivo .csv
+            </p>
+
+            <div align="center" class="form-group">
+                <input type="file" name="file" value="Examinar" class="btn-default" style="color:transparent" />
+            </div>
+            <div align="center" class="form-group">
+                <button type="submit" class="btn btn-default">Subir archivo</button>
+            </div>
+
+        </div>
     </div>
-    <div class="form-group"> 
-        <button type="submit" class="btn btn-default">Subir archivo</button>
+}
+
+<br />
+
+@using (Html.BeginForm("DeleteFile", "Jugador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary();
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <h2 align="center">Eliminar con Archivo</h2>
+            <p align="center">
+                Para eliminar un grupo de personas a través de un archivo .csv
+            </p>
+
+            <div align="center" class="form-group">
+                <input type="file" name="file" value="Examinar" class="btn-default" style="color:transparent" />
+            </div>
+            <div align="center" class="form-group">
+                <button type="submit" class="btn btn-default">Subir archivo</button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <br />
+        <div> @Html.ActionLink("Ver Jugadores", "Index") </div>
+        <div> @Html.ActionLink("Regresar al menu principal", "Index", "Home")</div>
+        <br />
     </div>
 
 }

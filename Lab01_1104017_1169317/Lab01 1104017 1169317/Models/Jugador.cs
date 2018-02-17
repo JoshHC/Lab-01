@@ -6,8 +6,14 @@ using System.Web;
 
 namespace Lab01_1104017_1169317
 {
-    public class Jugador
+    public class Jugador: IComparable
     {
+        public int CompareTo(object obj)
+        {
+            var comparer = ((Jugador)obj).ID;
+            return comparer < ID ? -1 : comparer == ID ? 0 : 1;
+        }
+
         [Key]
         public int ID { get; set; }
 
