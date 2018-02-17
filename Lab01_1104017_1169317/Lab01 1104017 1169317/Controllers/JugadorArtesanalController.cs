@@ -68,7 +68,41 @@ namespace Lab01_1104017_1169317.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                Jugador jugadorExistente = Data.Instance.JugadoresCSharp.ElementAt(id - 1);
+
+                // Aqui se Edita el Jugador
+                var jugadorNuevo = new Jugador
+                {
+                    Nombre = jugadorExistente.Nombre,
+                    Apellido = jugadorExistente.Apellido,
+                    Posición = jugadorExistente.Posición,
+                    Salario = Convert.ToDecimal(collection["Salario"]),
+                    Club = collection["Club"]
+                };
+
+                foreach (Jugador persona in Data.Instance.JugadoresCSharp)
+                {
+                    if (persona.ID == id)
+                    {
+                        int cont = 0;
+                        bool listo = false;
+
+                        while (listo != true)
+                        {
+                            if (Data.Instance.JugadoresCSharp.ElementAt(cont).ID != persona.ID)
+                                cont++;
+                            else
+                            {
+                                Data.Instance.JugadoresCSharp.AddBefore(Data.Instance.JugadoresCSharp.Find(persona), jugadorNuevo);
+                                Data.Instance.JugadoresCSharp.Remove(persona);
+                                listo = true;
+                            }
+                        }
+
+                        if (listo == true)
+                            break;
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
