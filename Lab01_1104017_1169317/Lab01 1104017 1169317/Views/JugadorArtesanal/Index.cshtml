@@ -1,17 +1,7 @@
 ﻿@model IEnumerable<Lab01_1104017_1169317.Jugador>
 
-@{
-    ViewBag.Title = "Lista de Jugadores";
-}
-
-<h2>Lista de Jugadores</h2>
-
 <p>
-    <br />
-    <div> @Html.ActionLink("Crear Nuevo Jugador Manual", "Create")</div>
-    <div> @Html.ActionLink("Cargar Archivo de Jugadores", "UploadFile")</div>
-    <div> @Html.ActionLink("Regresar al menu principal", "Index", "Home")</div>
-    <br />
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -33,30 +23,29 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Posición)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Club)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                @* @Html.ActionLink("Details", "Details", new { id=item.ID }) | *@
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Posición)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Club)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
 
 </table>
