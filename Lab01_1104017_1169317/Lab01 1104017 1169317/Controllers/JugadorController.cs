@@ -34,24 +34,30 @@ namespace Lab01_1104017_1169317.Controllers
             }
 
             Stream Direccion = file.InputStream;
-        //Se lee el Archivo que se subio, por medio del Lector
+            //Se lee el Archivo que se subio, por medio del Lector
+
             StreamReader Lector = new StreamReader(Direccion);
-        //El Archivo se lee en una lista para luego ingresarlo
-            List<Jugador> DatosJugadores = new List<Jugador>();
-        //Se crea un Jugador Momentaneo para pasar los datos
+            //El Archivo se lee en una lista para luego ingresarlo
+
+            //Se crea un Jugador Momentaneo para pasar los datos
+
             string Dato = Lector.ReadLine();
+            Dato = Lector.ReadLine();
             string[] Linea = Dato.Split(',');
 
             while(Dato != null)
             {
-                var jugadornuevo = new Jugador();
-                jugadornuevo.ID = (DatosJugadores.Count() + 1);
-                jugadornuevo.Club = Linea[0];
-                jugadornuevo.Apellido = Linea[1];
-                jugadornuevo.Nombre = Linea[2];
-                jugadornuevo.Posición = Linea[3];
-                jugadornuevo.Salario = Convert.ToDecimal(Linea[4]);
-                Data.Instance.JugadoresCSharp.Add(jugadornuevo);
+                var jugadornuevo = new Jugador
+                {
+                    ID = Data.Instance.JugadoresCSharp.Count() + 1,
+                    Club = Linea[0],
+                    Apellido = Linea[1],
+                    Nombre = Linea[2],
+                    Posición = Linea[3],
+                    Salario = Convert.ToDecimal(Linea[4])
+                };
+                
+                Data.Instance.JugadoresCSharp.AddLast(jugadornuevo);
 
                 Dato = Lector.ReadLine();
 
@@ -65,6 +71,7 @@ namespace Lab01_1104017_1169317.Controllers
             return RedirectToAction("Index");
 
         }
+
         // GET: Jugador/Details/5
         public ActionResult Details(int id)
         {
@@ -95,7 +102,7 @@ namespace Lab01_1104017_1169317.Controllers
                     Club = collection["Club"]
                 };
 
-                Data.Instance.JugadoresCSharp.Add(jugadorNuevo);
+                Data.Instance.JugadoresCSharp.AddLast(jugadorNuevo);
                 return RedirectToAction("Index");
             }
             catch
@@ -118,18 +125,41 @@ namespace Lab01_1104017_1169317.Controllers
         {
             try
             {
+                Jugador jugadorExistente = Data.Instance.JugadoresCSharp.ElementAt(id - 1);
+
                 // Aqui se Edita el Jugador
                 var jugadorNuevo = new Jugador
                 {
-                    Nombre = collection["Nombre"],
-                    Apellido = collection["Apellido"],
-                    Posición = collection["Posición"],
+                    Nombre = jugadorExistente.Nombre,
+                    Apellido = jugadorExistente.Apellido,
+                    Posición = jugadorExistente.Posición,
                     Salario = Convert.ToDecimal(collection["Salario"]),
                     Club = collection["Club"]
                 };
 
-                Data.Instance.JugadoresCSharp.RemoveAt((id-1));
-                Data.Instance.JugadoresCSharp.Insert((id-1), jugadorNuevo);
+                foreach (Jugador persona in Data.Instance.JugadoresCSharp)
+                {
+                    if (persona.ID == id)
+                    {
+                        int cont = 0;
+                        bool listo = false;
+
+                        while (listo != true)
+                        {
+                            if (Data.Instance.JugadoresCSharp.ElementAt(cont).ID != persona.ID)
+                                cont++;
+                            else
+                            {
+                                Data.Instance.JugadoresCSharp.AddBefore(Data.Instance.JugadoresCSharp.Find(persona), jugadorNuevo);
+                                Data.Instance.JugadoresCSharp.Remove(persona);
+                                listo = true;
+                            }
+                        }
+
+                        if (listo == true)
+                            break;
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
@@ -152,7 +182,28 @@ namespace Lab01_1104017_1169317.Controllers
             try
             {
                 // TODO: Add delete logic here
-                Data.Instance.JugadoresCSharp.RemoveAt((id-1));
+                foreach (Jugador persona in Data.Instance.JugadoresCSharp)
+                {
+                    if (persona.ID == id)
+                    {
+                        int cont = 0;
+                        bool listo = false;
+
+                        while (listo != true)
+                        {
+                            if (Data.Instance.JugadoresCSharp.ElementAt(cont).ID != persona.ID)
+                                cont++;
+                            else
+                            {
+                                Data.Instance.JugadoresCSharp.Remove(persona);
+                                listo = true;
+                            }
+                        }
+
+                        if (listo == true)
+                            break;
+                    }
+                }
                 return RedirectToAction("Index");
             }
             catch
@@ -160,5 +211,79 @@ namespace Lab01_1104017_1169317.Controllers
                 return View();
             }
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //Aca se hace el Ingreso por medio de Archivo de Texto, ya que el Boton de Result esta Linkeado.
+        public ActionResult DeleteFile(HttpPostedFileBase file)
+        {
+            if (Path.GetExtension(file.FileName) != ".csv")
+            {
+                //Aca se debe de Agregar una Vista de Error, o de Datos No Cargados
+                //return RedirectToAction("Index");
+            }
+
+            Stream Direccion = file.InputStream;
+            //Se lee el Archivo que se subio, por medio del Lector
+
+            StreamReader Lector = new StreamReader(Direccion);
+            //El Archivo se lee en una lista para luego ingresarlo
+
+            //Se crea un Jugador Momentaneo para pasar los datos
+
+            string Dato = Lector.ReadLine();
+            Dato = Lector.ReadLine();
+            string[] Linea = Dato.Split(',');
+
+            while (Dato != null)
+            {
+                var jugadorEliminar = new Jugador
+                {
+                    ID = Data.Instance.JugadoresCSharp.Count() + 1,
+                    Club = Linea[0],
+                    Apellido = Linea[1],
+                    Nombre = Linea[2],
+                    Posición = Linea[3],
+                    Salario = Convert.ToDecimal(Linea[4])
+                };
+
+                foreach (Jugador persona in Data.Instance.JugadoresCSharp)
+                {
+                    if (persona.Nombre == jugadorEliminar.Nombre && persona.Apellido == jugadorEliminar.Apellido && persona.Posición == jugadorEliminar.Posición &&
+                        persona.Salario == jugadorEliminar.Salario && persona.Club == jugadorEliminar.Club)
+                    {
+                        int cont = 0;
+                        bool listo = false;
+
+                        while (listo != true)
+                        {
+                            if (Data.Instance.JugadoresCSharp.ElementAt(cont).ID != persona.ID)
+                                cont++;
+                            else
+                            {
+                                Data.Instance.JugadoresCSharp.Remove(persona);
+                                listo = true;
+                            }
+                        }
+
+                        if (listo == true)
+                            break;
+                    }
+                }
+
+                Dato = Lector.ReadLine();
+
+                if (Dato != null)
+                {
+                    Linea = Dato.Split(',');
+                }
+
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
     }
 }
