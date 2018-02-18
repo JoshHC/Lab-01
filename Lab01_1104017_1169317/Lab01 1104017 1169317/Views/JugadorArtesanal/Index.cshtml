@@ -8,7 +8,7 @@
 
 <p>
     <br />
-    <div> @Html.ActionLink("Crear Nuevo Jugador Manual", "CreateArtesanal", "Jugador")</div>
+    <div> @Html.ActionLink("Crear Nuevo Jugador Manual", "CreateArtesanal", "JugadorArtesanal")</div>
     <div> @Html.ActionLink("Cargar Archivo de Jugadores", "UploadFileArtesanal")</div>
     <div> @Html.ActionLink("Regresar al menu principal", "Index", "Home")</div>
     <br />
@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Club)
             </td>
             <td>
-                @Html.ActionLink("Editar", "EditArtesanal", new { id = item.ID }) |
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
                 @*@Html.ActionLink("Details", "DetailsArtesanal", new { id=item.ID }) |*@
                 @Html.ActionLink("Eliminar", "DeleteArtesanal", new { id = item.ID })
             </td>

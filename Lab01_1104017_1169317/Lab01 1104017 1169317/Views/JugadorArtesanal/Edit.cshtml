@@ -37,7 +37,7 @@
             @Html.LabelFor(model => model.Posición, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Posición, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Posición, "La posición no es modificable", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Posición, "La posicion no es modificable", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -67,7 +67,7 @@
 
 <div>
     <br />
-    <div> @Html.ActionLink("Ver Jugadores", "Index", "Jugador") </div>
+    <div> @Html.ActionLink("Ver Jugadores", "Index", "JugadorArtesanal") </div>
     <div> @Html.ActionLink("Regresar al menu principal", "Index", "Home")</div>
     <br />
 </div>
