@@ -16,11 +16,27 @@ namespace Lab01_1104017_1169317.Controllers
             return View(Data.Instance.JugadoresCSharp);
         }
 
-        public ActionResult Busqueda(string Search)
+        public ActionResult Busqueda(string Tipo, string Search)
         {
-            //Aqui debes poner un switch con lo que queres que busque y redirigirlo a una vista de resultado, puede ser una 
-            //para cada cosa si queres, empeza vos y nos las ingeniamos mas tarde, pero dale prioridad a el Edit :))
-            //Suerte
+            if(Tipo == "Nombre")
+            {
+                //Lo que creo que podemos hacer es hacer una nueva lista de c# que almacene los datos de los jugadores solo con el nombre que 
+                //queremos y mostramos esa lista en una nueva view llamada indexnombre
+                return View("IndexNombre",Search);
+
+            }else  if(Tipo == "Apellido")
+            {
+
+            }else if (Tipo == "Posicion")
+            {
+
+            }else if (Tipo == "Salario")
+            {
+
+            }else if (Tipo == "Club")
+            {
+
+            }
             return View();
         }
 
