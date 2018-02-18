@@ -16,6 +16,14 @@ namespace Lab01_1104017_1169317.Controllers
             return View(Data.Instance.JugadoresCSharp);
         }
 
+        public ActionResult Busqueda(string Search)
+        {
+            //Aqui debes poner un switch con lo que queres que busque y redirigirlo a una vista de resultado, puede ser una 
+            //para cada cosa si queres, empeza vos y nos las ingeniamos mas tarde, pero dale prioridad a el Edit :))
+            //Suerte
+            return View();
+        }
+
         // GET: Jugador/Details/5
         public ActionResult Details(int id)
         {

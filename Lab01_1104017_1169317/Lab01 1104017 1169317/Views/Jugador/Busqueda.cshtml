@@ -1,0 +1,24 @@
+﻿@model Lab01_1104017_1169317.Jugador
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Jugador</h4>
+        <form method="get" action="@Url.Action("Busqueda", "Jugador")">
+            <label for="search">Search</label>
+            <input type="text" name="Search" id="Search" />
+            <button type="submit">Perform search</button>
+        </form>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
