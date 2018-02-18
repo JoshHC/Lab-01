@@ -115,7 +115,7 @@ namespace Lab01_1104017_1169317.Controllers
 
 
         // GET: JugadorArtesanal/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             return View();
         }
@@ -126,7 +126,45 @@ namespace Lab01_1104017_1169317.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                Jugador jugadorExistente = Data.Instance.JugadoresArtesanal.ElementAt(id - 1);
+                //NodoDoble nodoJugadorExistente;
+
+                // Aqui se Edita el Jugador
+                var personaNuevo = new Jugador
+                {
+                    Nombre = jugadorExistente.Nombre,
+                    Apellido = jugadorExistente.Apellido,
+                    Posición = jugadorExistente.Posición,
+                    Salario = Convert.ToDecimal(collection["Salario"]),
+                    Club = collection["Club"]
+                };
+
+                NodoDoble<Jugador> jugadorNuevo = new NodoDoble<Jugador>(null, personaNuevo, null);
+
+                foreach (Jugador persona in Data.Instance.JugadoresArtesanal)
+                {
+                    if (persona.ID == id)
+                    {
+                        int cont = 0;
+                        bool listo = false;
+
+                        while (listo != true)
+                        {
+                            if (Data.Instance.JugadoresArtesanal.ElementAt(cont).ID != persona.ID)
+                                cont++;
+                            else
+                            {
+                                NodoDoble<Jugador> personaElimnar = new NodoDoble<Jugador>(null, persona, null);
+                                Data.Instance.JugadoresArtesanal.EliminarOrden(personaElimnar);
+                                Data.Instance.JugadoresArtesanal.InsertarPorPosicion(cont, jugadorNuevo);
+                                listo = true;
+                            }
+                        }
+
+                        if (listo == true)
+                            break;
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
