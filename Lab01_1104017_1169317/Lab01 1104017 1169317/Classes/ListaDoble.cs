@@ -153,6 +153,13 @@ namespace Lab01_1104017_1169317.Classes
                 nNuevo.siguiente = nodoAuxiliar.siguiente;
                 nodoAuxiliar.siguiente = nNuevo;
                 nNuevo.anterior = nodoAuxiliar;
+
+                if (nNuevo.siguiente != null)
+                {
+                    nodoAuxiliar = nNuevo.siguiente;
+                    nodoAuxiliar.anterior = nNuevo;
+                }
+                
                 tamaño++;
             }
             else

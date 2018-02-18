@@ -99,6 +99,7 @@ namespace Lab01_1104017_1169317.Controllers
                 // Aqui se Edita el Jugador
                 var jugadorNuevo = new Jugador
                 {
+                    ID = jugadorExistente.ID,
                     Nombre = jugadorExistente.Nombre,
                     Apellido = jugadorExistente.Apellido,
                     Posición = jugadorExistente.Posición,
