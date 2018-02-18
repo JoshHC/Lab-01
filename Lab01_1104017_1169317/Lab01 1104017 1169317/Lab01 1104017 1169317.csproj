@@ -195,9 +195,11 @@
     <Content Include="Views\Jugador\Index.cshtml" />
     <Content Include="Views\Jugador\Delete.cshtml" />
     <Content Include="Views\Jugador\UploadFile.cshtml" />
-    <Content Include="Views\JugadorArtesanal\Create.cshtml" />
+    <Content Include="Views\JugadorArtesanal\CreateArtesanal.cshtml" />
+    <Content Include="Views\JugadorArtesanal\UploadFileArtesanal.cshtml" />
+    <Content Include="Views\JugadorArtesanal\DeleteArtesanal.cshtml" />
     <Content Include="Views\JugadorArtesanal\Index.cshtml" />
-    <Content Include="Views\JugadorArtesanal\Edit.cshtml" />
+    <Content Include="Views\Jugador\Busqueda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

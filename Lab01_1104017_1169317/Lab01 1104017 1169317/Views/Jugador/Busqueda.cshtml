@@ -1,0 +1,35 @@
+﻿@model Lab01_1104017_1169317.Jugador
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <div id="contenedor"></div>
+    <h4>Seleccione una Opcion para Buscar</h4>
+    <form method="get" action="@Url.Action("Busqueda", "Jugador")">
+        <label for="search">Buscar Por:</label>
+        <select name ="Tipo" id="Tipo">
+            <option value="Nombre">Nombre</option>
+            <option value="Apellido">Apellido</option>
+            <option value="Posicion">Posicion</option>
+            <option value="Salario">Salario</option>
+            <option value="Club">Club</option>
+        </select>
+        <input type="text" name="Search" id="Search" />
+        <button type="submit">Buscar</button>
+        </form>
+</div>
+
+}
+
+
+
+<div>
+    @Html.ActionLink("Ver Jugadores", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

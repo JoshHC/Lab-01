@@ -35,7 +35,11 @@ namespace Lab01_1104017_1169317.Classes
         int tamaño;
 
 
-        /// <summary>
+        public int Tamaño()
+        {
+            return tamaño;
+        }
+
         /// Constructor de la clase ListaSimple
         /// </summary>
         public ListaDoble()
@@ -219,22 +223,22 @@ namespace Lab01_1104017_1169317.Classes
         /// Método que elimina el nodo que concida con un dato enviado por el usuario.
         /// </summary>
         /// <param name="dato">Numero que envia el usuario</param>
-        public NodoDoble<T> EliminarOrden(int dato)
+        public NodoDoble<T> EliminarOrden(NodoDoble<T> dato)
         {
             NodoDoble<T> nodoAuxiliar;
             nodoAuxiliar = inicio;
 
-            if (inicio.Valor.CompareTo(dato) == 0)
+            if (inicio.Valor.CompareTo(dato.Valor) == 0)
             {
                 return EliminarPrimero();
             }
-            else if (final.Valor.CompareTo(dato) == 0)
+            else if (final.Valor.CompareTo(dato.Valor) == 0)
             {
                 return EliminarUltimo();
             }
             else
             {
-                while (nodoAuxiliar.siguiente.Valor.CompareTo(dato) != 0)
+                while (nodoAuxiliar.siguiente.Valor.CompareTo(dato.Valor) != 0)
                 {
                     nodoAuxiliar = nodoAuxiliar.siguiente;
                 }
@@ -287,7 +291,7 @@ namespace Lab01_1104017_1169317.Classes
         /// </summary>
         /// <param name="identificador">Numero que identifica al nodo a trasladar</param>
         /// <param name="posiciones">Numero que describe cuantas posiciones se correrá el nodo</param>
-        public void CorrerNodo(int identificador, int posiciones)
+        public void CorrerNodo(NodoDoble<T> identificador, int posiciones)
         {
             NodoDoble<T> nodoAuxiliar;
             nodoAuxiliar = inicio;

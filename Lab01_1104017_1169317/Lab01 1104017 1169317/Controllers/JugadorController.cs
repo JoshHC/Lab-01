@@ -13,8 +13,31 @@ namespace Lab01_1104017_1169317.Controllers
         // GET: Jugador
         public ActionResult Index()
         {
-            //Data.Instance.JugadoresCSharp
             return View(Data.Instance.JugadoresCSharp);
+        }
+
+        public ActionResult Busqueda(string Tipo, string Search)
+        {
+            if(Tipo == "Nombre")
+            {
+                //Lo que creo que podemos hacer es hacer una nueva lista de c# que almacene los datos de los jugadores solo con el nombre que 
+                //queremos y mostramos esa lista en una nueva view llamada indexnombre
+                return View("IndexNombre",Search);
+
+            }else  if(Tipo == "Apellido")
+            {
+
+            }else if (Tipo == "Posicion")
+            {
+
+            }else if (Tipo == "Salario")
+            {
+
+            }else if (Tipo == "Club")
+            {
+
+            }
+            return View();
         }
 
         // GET: Jugador/Details/5
@@ -62,8 +85,6 @@ namespace Lab01_1104017_1169317.Controllers
         // GET: Jugador/Edit/5
         public ActionResult Edit(int? id)
         {
-
-
             return View();
         }
 
