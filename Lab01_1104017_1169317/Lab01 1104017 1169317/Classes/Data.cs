@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -21,11 +22,13 @@ namespace Lab01_1104017_1169317.Classes
 
         public LinkedList<Jugador> JugadoresCSharp;
         public ListaDoble<Jugador> JugadoresArtesanal;
+        public StreamWriter escritor;
 
         public Data()
         {
             JugadoresCSharp = new LinkedList<Jugador>();
             JugadoresArtesanal = new ListaDoble<Jugador>();
+            escritor = new StreamWriter(@"C:\Users\Admin\Desktop\TiemposProcesos.txt");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Lab01_1104017_1169317.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,9 @@ namespace Lab01_1104017_1169317.Controllers
 
         public ActionResult Busqueda(string Tipo, string Search)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+                
             if (Tipo == "Nombre")
             {
 
@@ -31,7 +35,11 @@ namespace Lab01_1104017_1169317.Controllers
                     }
 
                 }
-                return View("Index",NombreBuscado);
+
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
+                return View("Index", NombreBuscado);
               
 
             }else  if(Tipo == "Apellido")
@@ -46,6 +54,10 @@ namespace Lab01_1104017_1169317.Controllers
                     }
 
                 }
+
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
                 return View("Index", ApellidoBuscado);
 
             }
@@ -61,6 +73,10 @@ namespace Lab01_1104017_1169317.Controllers
                     }
 
                 }
+
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
                 return View("Index", PosicionBuscada);
 
             }
@@ -76,6 +92,10 @@ namespace Lab01_1104017_1169317.Controllers
                     }
 
                 }
+
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
                 return View("Index", SalarioBuscado);
 
 
@@ -92,9 +112,14 @@ namespace Lab01_1104017_1169317.Controllers
                     }
 
                 }
+
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
                 return View("Index", ClubBuscado);
 
             }
+
             return View();
         }
 
@@ -114,6 +139,8 @@ namespace Lab01_1104017_1169317.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
             try
             {
@@ -130,6 +157,9 @@ namespace Lab01_1104017_1169317.Controllers
 
                 Data.Instance.JugadoresCSharp.AddLast(jugadorNuevo);
 
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de insercion manual en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
                 return RedirectToAction("Index");
             }
             catch
@@ -137,7 +167,6 @@ namespace Lab01_1104017_1169317.Controllers
                 return View();
             }
 
-            
         }
 
         // GET: Jugador/Edit/5
@@ -150,6 +179,9 @@ namespace Lab01_1104017_1169317.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             try
             {
                 Jugador jugadorExistente = Data.Instance.JugadoresCSharp.ElementAt(id - 1);
@@ -190,6 +222,9 @@ namespace Lab01_1104017_1169317.Controllers
                     }
                 }
 
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de la edición en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
                 return RedirectToAction("Index");
             }
             catch
@@ -208,6 +243,9 @@ namespace Lab01_1104017_1169317.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             try
             {
                 // TODO: Add delete logic here
@@ -233,6 +271,10 @@ namespace Lab01_1104017_1169317.Controllers
                             break;
                     }
                 }
+
+                stopwatch.Stop();
+                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de eliminación en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
                 return RedirectToAction("Index");
             }
             catch
@@ -252,6 +294,9 @@ namespace Lab01_1104017_1169317.Controllers
         //Aca se hace el Ingreso por medio de Archivo de Texto, ya que el Boton de Result esta Linkeado.
         public ActionResult UploadFile(HttpPostedFileBase file)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             if (Path.GetExtension(file.FileName) != ".csv")
             {
                 //Aca se debe de Agregar una Vista de Error, o de Datos No Cargados
@@ -293,6 +338,9 @@ namespace Lab01_1104017_1169317.Controllers
 
             }
 
+            stopwatch.Stop();
+            Data.Instance.escritor.WriteLine("Tiempo de ejecucion de la carga de jugadores por archivo de texto en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+
             return RedirectToAction("Index");
 
         }
@@ -302,6 +350,9 @@ namespace Lab01_1104017_1169317.Controllers
         //Aca se hace el Ingreso por medio de Archivo de Texto, ya que el Boton de Result esta Linkeado.
         public ActionResult DeleteFile(HttpPostedFileBase file)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             if (Path.GetExtension(file.FileName) != ".csv")
             {
                 //Aca se debe de Agregar una Vista de Error, o de Datos No Cargados
@@ -364,6 +415,9 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
             }
+
+            stopwatch.Stop();
+            Data.Instance.escritor.WriteLine("Tiempo de ejecucion de eliminación por archivo de texto en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
 
             return RedirectToAction("Index");
 
