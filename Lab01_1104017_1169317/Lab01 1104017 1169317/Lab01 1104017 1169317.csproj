@@ -201,6 +201,7 @@
     <Content Include="Views\JugadorArtesanal\Index.cshtml" />
     <Content Include="Views\Jugador\Busqueda.cshtml" />
     <Content Include="Views\JugadorArtesanal\Edit.cshtml" />
+    <Content Include="Views\JugadorArtesanal\BusquedaArtesanal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

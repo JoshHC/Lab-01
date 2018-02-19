@@ -18,23 +18,81 @@ namespace Lab01_1104017_1169317.Controllers
 
         public ActionResult Busqueda(string Tipo, string Search)
         {
-            if(Tipo == "Nombre")
+            if (Tipo == "Nombre")
             {
-                //Lo que creo que podemos hacer es hacer una nueva lista de c# que almacene los datos de los jugadores solo con el nombre que 
-                //queremos y mostramos esa lista en una nueva view llamada indexnombre
-                return View("IndexNombre",Search);
+
+                List<Jugador> NombreBuscado = new List<Jugador>();
+                NombreBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresCSharp)
+                {
+                    if(item.Nombre == Search)
+                    {
+                        NombreBuscado.Add(item);
+                    }
+
+                }
+                return View("Index",NombreBuscado);
+              
 
             }else  if(Tipo == "Apellido")
             {
+                List<Jugador> ApellidoBuscado = new List<Jugador>();
+                ApellidoBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresCSharp)
+                {
+                    if (item.Apellido == Search)
+                    {
+                        ApellidoBuscado.Add(item);
+                    }
 
-            }else if (Tipo == "Posicion")
-            {
+                }
+                return View("Index", ApellidoBuscado);
 
-            }else if (Tipo == "Salario")
+            }
+            else if (Tipo == "Posicion")
             {
+                List<Jugador> PosicionBuscada = new List<Jugador>();
+                PosicionBuscada.Clear();
+                foreach (var item in Data.Instance.JugadoresCSharp)
+                {
+                    if (item.Posición == Search)
+                    {
+                        PosicionBuscada.Add(item);
+                    }
 
-            }else if (Tipo == "Club")
+                }
+                return View("Index", PosicionBuscada);
+
+            }
+            else if (Tipo == "Salario")
             {
+                List<Jugador> SalarioBuscado = new List<Jugador>();
+                SalarioBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresCSharp)
+                {
+                    if (item.Salario == Convert.ToDecimal(Search))
+                    {
+                        SalarioBuscado.Add(item);
+                    }
+
+                }
+                return View("Index", SalarioBuscado);
+
+
+            }
+            else if (Tipo == "Club")
+            {
+                List<Jugador> ClubBuscado = new List<Jugador>();
+                ClubBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresCSharp)
+                {
+                    if (item.Club == Search)
+                    {
+                        ClubBuscado.Add(item);
+                    }
+
+                }
+                return View("Index", ClubBuscado);
 
             }
             return View();

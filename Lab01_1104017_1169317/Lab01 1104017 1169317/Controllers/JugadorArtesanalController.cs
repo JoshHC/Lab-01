@@ -16,6 +16,89 @@ namespace Lab01_1104017_1169317.Controllers
             return View(Data.Instance.JugadoresArtesanal);
         }
 
+        public ActionResult BusquedaArtesanal(string Tipo, string Search)
+        {
+            if (Tipo == "Nombre")
+            {
+
+                List<Jugador> NombreBuscado = new List<Jugador>();
+                NombreBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresArtesanal)
+                {
+                    if (item.Nombre == Search)
+                    {
+                        NombreBuscado.Add(item);
+                    }
+
+                }
+                return View("Index", NombreBuscado);
+
+
+            }
+            else if (Tipo == "Apellido")
+            {
+                List<Jugador> ApellidoBuscado = new List<Jugador>();
+                ApellidoBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresArtesanal)
+                {
+                    if (item.Apellido == Search)
+                    {
+                        ApellidoBuscado.Add(item);
+                    }
+
+                }
+                return View("Index", ApellidoBuscado);
+
+            }
+            else if (Tipo == "Posicion")
+            {
+                List<Jugador> PosicionBuscada = new List<Jugador>();
+                PosicionBuscada.Clear();
+                foreach (var item in Data.Instance.JugadoresArtesanal)
+                {
+                    if (item.Posición == Search)
+                    {
+                        PosicionBuscada.Add(item);
+                    }
+
+                }
+                return View("Index", PosicionBuscada);
+
+            }
+            else if (Tipo == "Salario")
+            {
+                List<Jugador> SalarioBuscado = new List<Jugador>();
+                SalarioBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresArtesanal)
+                {
+                    if (item.Salario == Convert.ToDecimal(Search))
+                    {
+                        SalarioBuscado.Add(item);
+                    }
+
+                }
+                return View("Index", SalarioBuscado);
+
+
+            }
+            else if (Tipo == "Club")
+            {
+                List<Jugador> ClubBuscado = new List<Jugador>();
+                ClubBuscado.Clear();
+                foreach (var item in Data.Instance.JugadoresArtesanal)
+                {
+                    if (item.Club == Search)
+                    {
+                        ClubBuscado.Add(item);
+                    }
+
+                }
+                return View("Index", ClubBuscado);
+
+            }
+            return View();
+        }
+
         // GET: JugadorArtesanal/Details/5
         public ActionResult DetailsArtesanal(int id)
         {
