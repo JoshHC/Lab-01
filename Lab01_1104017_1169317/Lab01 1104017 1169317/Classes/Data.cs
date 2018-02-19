@@ -19,16 +19,16 @@ namespace Lab01_1104017_1169317.Classes
             }
         }
 
-
         public LinkedList<Jugador> JugadoresCSharp;
         public ListaDoble<Jugador> JugadoresArtesanal;
-        public StreamWriter escritor;
+        public List<string> ArchivoTexto;
 
         public Data()
         {
             JugadoresCSharp = new LinkedList<Jugador>();
             JugadoresArtesanal = new ListaDoble<Jugador>();
-            escritor = new StreamWriter(@"C:\Users\Admin\Desktop\TiemposProcesos.txt");
+            ArchivoTexto = new List<string>();
         }
+
     }
 }

@@ -17,6 +17,17 @@ namespace Lab01_1104017_1169317.Controllers
             return View(Data.Instance.JugadoresCSharp);
         }
 
+        public static void imprimirArchivo()
+        {
+            StreamWriter escritor = new StreamWriter(@"C:\Users\Admin\Desktop\Tiempos de los Procesos.txt");
+
+            foreach (var linea in Data.Instance.ArchivoTexto)
+            {
+                escritor.WriteLine(linea);
+            }
+            escritor.Close();
+        }
+
         public ActionResult Busqueda(string Tipo, string Search)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -37,7 +48,8 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return View("Index", NombreBuscado);
               
@@ -56,7 +68,8 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return View("Index", ApellidoBuscado);
 
@@ -75,7 +88,8 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return View("Index", PosicionBuscada);
 
@@ -94,7 +108,8 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return View("Index", SalarioBuscado);
 
@@ -114,7 +129,8 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de busqueda por " + Tipo + " en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return View("Index", ClubBuscado);
 
@@ -158,7 +174,8 @@ namespace Lab01_1104017_1169317.Controllers
                 Data.Instance.JugadoresCSharp.AddLast(jugadorNuevo);
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de insercion manual en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de insercion manual en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return RedirectToAction("Index");
             }
@@ -223,7 +240,8 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de la edición en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de la edición en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return RedirectToAction("Index");
             }
@@ -273,7 +291,8 @@ namespace Lab01_1104017_1169317.Controllers
                 }
 
                 stopwatch.Stop();
-                Data.Instance.escritor.WriteLine("Tiempo de ejecucion de eliminación en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de eliminación en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+                imprimirArchivo();
 
                 return RedirectToAction("Index");
             }
@@ -339,7 +358,8 @@ namespace Lab01_1104017_1169317.Controllers
             }
 
             stopwatch.Stop();
-            Data.Instance.escritor.WriteLine("Tiempo de ejecucion de la carga de jugadores por archivo de texto en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+            Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de la carga de jugadores por archivo de texto en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+            imprimirArchivo();
 
             return RedirectToAction("Index");
 
@@ -417,7 +437,8 @@ namespace Lab01_1104017_1169317.Controllers
             }
 
             stopwatch.Stop();
-            Data.Instance.escritor.WriteLine("Tiempo de ejecucion de eliminación por archivo de texto en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+            Data.Instance.ArchivoTexto.Add("Tiempo de ejecucion de eliminación por archivo de texto en la Lista C#: " + stopwatch.ElapsedMilliseconds + " milisegundos");
+            imprimirArchivo();
 
             return RedirectToAction("Index");
 
